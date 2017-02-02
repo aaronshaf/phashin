@@ -6,3 +6,4 @@ geckodriver
 selenium-server-standalone*
 tmp/*
 pdfs.js
+npm-debug.log

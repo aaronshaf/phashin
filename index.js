@@ -5,6 +5,7 @@ const mkdirp = require('mkdirp')
 const uuid = require('node-uuid')
 const webdriverio = require('webdriverio')
 const bodyParser = require('body-parser')
+const pHash = require('phash')
 
 mkdirp(path.join(__dirname, 'tmp'))
 
@@ -19,9 +20,9 @@ app.get('/', function (req, res) {
 })
 
 app.post('/', function (req, res) {
+  console.lg('a')
   const requestId = uuid.v1()
   const screenshotFilename = `${requestId}-${browserName}.jpg`
-  console.log(req.body)
   const url = req.body.url
   if (!url) {
     return res.status(400).json('url missing')
@@ -41,7 +42,22 @@ app.post('/', function (req, res) {
       browser.saveScreenshot(path.join(__dirname, 'tmp', screenshotFilename))
     })
     .then(() => {
-      console.log('Done')
+      return new Promise((resolve, reject) => {
+        var hashA = pHash.imageHashSync("a.jpg")
+        pHash.imageHash(screenshotFilename, (error, hash) => {
+          if (error) {
+            reject(error)
+          }
+          res.json({hash})
+          resolve()
+        })
+      })
+    })
+    .then(() => {
+      del([screenshotFilename])
+    })
+    .catch(error => {
+      console.log({error})
     })
     .end()
 })

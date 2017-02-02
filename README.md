@@ -25,3 +25,7 @@ curl -O http://selenium-release.storage.googleapis.com/3.0/selenium-server-stand
 ```
 yarn
 ```
+
+### Phash stuff
+
+https://www.npmjs.com/package/phash
