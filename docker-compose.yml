@@ -11,5 +11,5 @@ services:
       - "4444:4444"
     environment:
       SCREEN_WIDTH: 1080
-      SCREEN_HEIGHT: 2480
+      SCREEN_HEIGHT: 2280
       SCREEN_DEPTH: 24
