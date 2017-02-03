@@ -1,0 +1,17 @@
+version: '2'
+services:
+  selenium:
+    image: .
+    ports:
+      - "3000:3000"
+  selenium:
+    image: selenium/hub:2.53.0
+    ports:
+      - "4444:4444"
+  chrome:
+    image: selenium/node-firefox:2.53.0
+    links:
+      - selenium
+    environment:
+      - no_proxy=""
+      - HUB_PORT_4444_TCP_ADDR=selenium

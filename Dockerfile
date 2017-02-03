@@ -8,13 +8,6 @@ RUN apt-get -y install xvfb
 RUN apt-get -y install libmagickcore-dev
 RUN apt-get -y install python
 
-# Firefox
-RUN apt-get -y install iceweasel
-
-# Selenium + geckodriver
-RUN curl -O http://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar
-RUN curl -L https://github.com/mozilla/geckodriver/releases/download/v0.11.1/geckodriver-v0.11.1-linux64.tar.gz | tar xz
-
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

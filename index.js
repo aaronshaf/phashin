@@ -5,14 +5,14 @@ const mkdirp = require('mkdirp')
 const uuid = require('node-uuid')
 const webdriverio = require('webdriverio')
 const bodyParser = require('body-parser')
-const pHash = require('phash')
+// const pHash = require('phash')
 
 mkdirp(path.join(__dirname, 'tmp'))
 
 const app = express()
 const browserName = 'firefox'
 const options = { desiredCapabilities: { browserName } }
-const viewportSize = { height: 4000, width: 1080 }
+const viewportSize = { height: 800, width: 1080 }
 
 app.use(bodyParser.json())
 app.get('/', function (req, res) {
@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 })
 
 app.post('/', function (req, res) {
-  console.lg('a')
+  console.log('a')
   const requestId = uuid.v1()
   const screenshotFilename = `${requestId}-${browserName}.jpg`
   const url = req.body.url
@@ -41,21 +41,21 @@ app.post('/', function (req, res) {
     .then(() => {
       browser.saveScreenshot(path.join(__dirname, 'tmp', screenshotFilename))
     })
-    .then(() => {
-      return new Promise((resolve, reject) => {
-        var hashA = pHash.imageHashSync("a.jpg")
-        pHash.imageHash(screenshotFilename, (error, hash) => {
-          if (error) {
-            reject(error)
-          }
-          res.json({hash})
-          resolve()
-        })
-      })
-    })
-    .then(() => {
-      del([screenshotFilename])
-    })
+    // .then(() => {
+    //   return new Promise((resolve, reject) => {
+    //     var hashA = pHash.imageHashSync("a.jpg")
+    //     pHash.imageHash(screenshotFilename, (error, hash) => {
+    //       if (error) {
+    //         reject(error)
+    //       }
+    //       res.json({hash})
+    //       resolve()
+    //     })
+    //   })
+    // })
+    // .then(() => {
+    //   del([screenshotFilename])
+    // })
     .catch(error => {
       console.log({error})
     })
