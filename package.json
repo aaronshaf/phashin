@@ -12,7 +12,6 @@
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "node-uuid": "^1.4.7",
-    "phash": "aaronm67/node-phash",
     "request": "^2.79.0",
     "webdriverio": "^4.6.2"
   }

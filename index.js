@@ -10,9 +10,9 @@ const bodyParser = require('body-parser')
 mkdirp(path.join(__dirname, 'tmp'))
 
 const app = express()
-const browserName = 'firefox'
+const browserName = 'chrome'
 const options = { desiredCapabilities: { browserName } }
-const viewportSize = { height: 800, width: 1080 }
+const viewportSize = { height: 2380, width: 980 }
 
 app.use(bodyParser.json())
 app.get('/', function (req, res) {
@@ -36,6 +36,7 @@ app.post('/', function (req, res) {
     .then(() => {
       // instead of pausing we need a way of determining if
       // browser is done loading and displaying
+      // driver.manage().window().maximize()
       return browser.pause(5000)
     })
     .then(() => {
@@ -53,9 +54,9 @@ app.post('/', function (req, res) {
     //     })
     //   })
     // })
-    // .then(() => {
-    //   del([screenshotFilename])
-    // })
+    .then(() => {
+      res.json('ok')
+    })
     .catch(error => {
       console.log({error})
     })
@@ -64,5 +65,5 @@ app.post('/', function (req, res) {
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, function () {
-  console.log(`phash-service on port ${PORT}!`)
+  console.log(`screenshot-service on port ${PORT}!`)
 })
