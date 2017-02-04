@@ -1,10 +1,16 @@
 version: '2'
 services:
-  # screenshots:
-  #   build:
-  #     context: .
-  #   ports:
-  #     - "3000:3000"
+  screenshots:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    links:
+      - selenium
+    depends_on:
+      - selenium
+    environment:
+      - SELENIUM_HOST=selenium
   selenium:
     image: selenium/standalone-chrome
     ports:

@@ -1,31 +1,8 @@
-## What is this?
 
-API that takes a PDF or an archive (.zip), generates image of browser render,
-returns phash.
-
-## Install
-
-### Java SDK
+## Request
 
 ```
-brew update
-brew cask install java
+curl -XPOST -H "Content-type: application/json" -d '{
+  "url": "https://news.ycombinator.com/"
+}' 'http://localhost:3000'
 ```
-
-### WebDriver
-
-http://webdriver.io/guide.html
-
-### Selenium Standalone
-
-```
-curl -O http://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar
-```
-
-```
-yarn
-```
-
-### Phash stuff
-
-https://www.npmjs.com/package/phash
